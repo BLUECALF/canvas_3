@@ -20,6 +20,7 @@ public class GameThread  extends Thread{
     //time variables to determine fps;
     int frames;
     int fps;
+    int game_delay;
 
     long starttime;
     long currenttime;
@@ -31,6 +32,7 @@ public class GameThread  extends Thread{
     //constructor
     public GameThread(obstacleView obstaclev,GameView gameview,PlayerView player,SurfaceHolder sh)
     {
+        game_delay = 25;
         running = false;
         gv = gameview;
         pv = player;
@@ -57,7 +59,9 @@ public class GameThread  extends Thread{
                 canvas = holder.lockCanvas();
                 gv.draw(canvas);
                 ov.obstacle_update_and_draw(canvas);
+
                 pv.draw(canvas);
+                ov.report_collission(canvas,pv.player_jumping_x,pv.player_jumping_y);
                 frames = frames+1;
 
                 fps();
@@ -67,14 +71,14 @@ public class GameThread  extends Thread{
                 holder.unlockCanvasAndPost(canvas);
                 if(pv.action.equals("run"))
                 {try {
-                    sleep(25);
+                    sleep(game_delay);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }}
                 if(pv.action.equals("jump")) //sleep at more miliseconds if player is jumping.
                 {
                     try {
-                        sleep(30);
+                        sleep(game_delay + 5);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -83,7 +87,7 @@ public class GameThread  extends Thread{
                 if(pv.action.equals("slide"))
                 {
                     try {
-                        sleep(30);
+                        sleep(game_delay + 5);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

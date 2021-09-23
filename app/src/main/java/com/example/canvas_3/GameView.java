@@ -37,7 +37,8 @@ public class GameView extends SurfaceView {
     ArrayList<Bitmap> playerSprites = new ArrayList<>();
     //OBSTACLE VIEW  IMAGES IN AN ARRAY LIST OF BITMAP.
     ArrayList<Bitmap> obstacleImage = new ArrayList<>();
-
+    //IMAGES OF THE BIRD OBSTACLE
+    ArrayList<Bitmap> bird_image_array = new ArrayList<>();
     //character sprites used in running.
     Bitmap R0;
     Bitmap R1;
@@ -84,6 +85,15 @@ public class GameView extends SurfaceView {
     Bitmap Obstacle7;
     Bitmap Obstacle8;
     Bitmap Obstacle9;
+
+    //BITMAPS OF THE BIRD IMAGES
+    Bitmap bird_0;
+    Bitmap bird_1;
+    Bitmap bird_2;
+    Bitmap bird_3;
+    Bitmap bird_4;
+    Bitmap bird_5;
+
 
 
 
@@ -162,6 +172,15 @@ public class GameView extends SurfaceView {
         Obstacle9 = BitmapFactory.decodeResource(getResources(),R.drawable.r_bush_2);
 
 
+        //ADDING IMAGES TO BIRD BITMAPS.
+        bird_0 = BitmapFactory.decodeResource(getResources(),R.drawable.r_hawk_000);
+        bird_1 = BitmapFactory.decodeResource(getResources(),R.drawable.r_hawk_001);
+        bird_2 = BitmapFactory.decodeResource(getResources(),R.drawable.r_hawk_002);
+        bird_3 = BitmapFactory.decodeResource(getResources(),R.drawable.r_hawk_003);
+        bird_4 = BitmapFactory.decodeResource(getResources(),R.drawable.r_hawk_004);
+        bird_5 = BitmapFactory.decodeResource(getResources(),R.drawable.r_hawk_005);
+
+
 
         obstacleImage.add(Obstacle1);
         obstacleImage.add(Obstacle2);
@@ -172,6 +191,13 @@ public class GameView extends SurfaceView {
         obstacleImage.add(Obstacle7);
         obstacleImage.add(Obstacle8);
         obstacleImage.add(Obstacle9);
+
+        bird_image_array.add(bird_0);  //addong bitmaps to bird array list
+        bird_image_array.add(bird_1);
+        bird_image_array.add(bird_2);
+        bird_image_array.add(bird_3);
+        bird_image_array.add(bird_4);
+        bird_image_array.add(bird_5);
 
 
         //adding bitmaps to the array list.
@@ -209,7 +235,7 @@ public class GameView extends SurfaceView {
 
 
         player = new PlayerView(playerSprites);
-        obstacle = new obstacleView(obstacleImage,getWidth(),getHeight());
+        obstacle = new obstacleView(obstacleImage,bird_image_array,thread);
         thread = new GameThread(obstacle,this,player,getHolder());
 
         thread.running = true;
