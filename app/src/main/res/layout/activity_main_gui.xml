@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:background="@drawable/desert_image"
+    tools:context=".GUI_activity"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/editext_bg"
+        android:padding="10dp"
+        android:text="UserName : "
+        android:textSize="30sp"
+
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_marginTop="20dp"
+        android:text=" PLAY "
+        android:background="@drawable/buttons_bg"
+        android:id="@+id/play"
+        android:layout_centerHorizontal="true"
+        android:onClick="open_lobby"
+        android:layout_below ="@+id/username"
+        android:textSize="30sp"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" CHAT "
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/chat"
+        android:background="@drawable/buttons_bg"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/play"
+        android:textSize="30sp"/>
+
+
+
+</RelativeLayout>

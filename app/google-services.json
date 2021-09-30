@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "199829164508",
+    "project_id": "canvas-3-b2835",
+    "storage_bucket": "canvas-3-b2835.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199829164508:android:af2c6c707712396d00bf19",
+        "android_client_info": {
+          "package_name": "com.example.canvas_3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199829164508-eee0q5bqn27mrmskrkssc7sa00pt2n06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvLWQZ6X1e2_q-5Q9-HQBrz5-jmLaprVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "199829164508-eee0q5bqn27mrmskrkssc7sa00pt2n06.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

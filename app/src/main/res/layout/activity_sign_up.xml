@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/form_bg"
+    tools:context=".sign_up">
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+      android:text="FIRST TIME !! PLEASE SIGN UP"
+       android:textSize="20sp"
+       android:layout_marginTop="50dp"
+       android:padding="15dp"
+       android:layout_gravity="center_horizontal"
+       />
+
+    <EditText
+        android:hint="username"
+        android:id="@+id/_username"
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:layout_width="200dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/editext_bg"
+        android:gravity="center"
+        android:inputType="text"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:hint="email"
+        android:layout_width="200dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/_email"
+        android:padding="15dp"
+        android:gravity="center"
+        android:background="@drawable/editext_bg"
+        android:layout_gravity="center_horizontal"
+        android:inputType="textEmailAddress"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:hint="game password"
+        android:layout_width="200dp"
+        android:inputType="textPassword"
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:id="@+id/_game_password"
+        android:gravity="center"
+        android:background="@drawable/editext_bg"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SUBMITT"
+        android:layout_marginTop="30dp"
+        android:padding="20dp"
+       android:onClick="submitt_player_data"
+        android:gravity="center"
+        android:background="@drawable/buttons_bg"
+        android:layout_gravity="center_horizontal"/>
+
+
+
+
+</LinearLayout>
