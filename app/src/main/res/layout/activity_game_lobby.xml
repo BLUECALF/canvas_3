@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/desert_image"
     android:layout_height="match_parent"
     tools:context=".game_lobby">
 
@@ -38,9 +39,48 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:layout_width="200dp"
-                        android:src="@drawable/r_run__001"
-                        android:layout_height="200dp"
+                        android:layout_width="100dp"
+                        android:src="@drawable/boy_display"
+                        android:layout_height="100dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/editext_bg"
+                        android:gravity="center_horizontal"
+                        android:text="Dude"
+                        android:textSize="15sp"
+
+                        />
+                    <Button
+                        android:text=" BUY "
+                        android:background="@drawable/buttons_bg"
+                        android:onClick="character_available"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <Button
+                        android:text="EQUIP"
+                        android:background="@drawable/buttons_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:src="@drawable/girl_display"
+                        android:layout_height="100dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/editext_bg"
+                        android:gravity="center_horizontal"
+                        android:text="Dudess"
+                        android:textSize="15sp"
                         />
                     <Button
                         android:text="BUY"
@@ -61,9 +101,49 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:layout_width="200dp"
-                        android:src="@drawable/r_run__001"
-                        android:layout_height="200dp"
+                        android:layout_width="100dp"
+                        android:src="@drawable/cat_display"
+                        android:layout_height="100dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/editext_bg"
+                        android:gravity="center_horizontal"
+                        android:text="Kitty"
+                        android:textSize="15sp"
+                        />
+
+                    <Button
+                        android:text=" BUY "
+                        android:background="@drawable/buttons_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <Button
+                        android:text="EQUIP"
+                        android:background="@drawable/buttons_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:src="@drawable/dog_display"
+                        android:layout_height="100dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/editext_bg"
+                        android:gravity="center_horizontal"
+                        android:text="Puppy"
+                        android:textSize="15sp"
                         />
                     <Button
                         android:text="BUY"
@@ -84,9 +164,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:layout_width="200dp"
-                        android:src="@drawable/r_run__001"
-                        android:layout_height="200dp"
+                        android:layout_width="100dp"
+                        android:src="@drawable/santa_claus_display"
+                        android:layout_height="100dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/editext_bg"
+                        android:gravity="center_horizontal"
+                        android:text="santa claus"
+                        android:textSize="15sp"
                         />
                     <Button
                         android:text="BUY"
@@ -98,8 +186,6 @@
                         android:background="@drawable/buttons_bg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-
-
                 </LinearLayout>
                 <LinearLayout
                     android:gravity="center_horizontal"
@@ -107,9 +193,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:layout_width="200dp"
-                        android:src="@drawable/r_run__001"
-                        android:layout_height="200dp"
+                        android:layout_width="100dp"
+                        android:src="@drawable/ninja_girl_display"
+                        android:layout_height="100dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/editext_bg"
+                        android:gravity="center_horizontal"
+                        android:text="ninja girl"
+                        android:textSize="15sp"
                         />
                     <Button
                         android:text="BUY"
@@ -121,9 +215,97 @@
                         android:background="@drawable/buttons_bg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-
-
                 </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:src="@drawable/ninja_boy_display"
+                        android:layout_height="100dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/editext_bg"
+                        android:gravity="center_horizontal"
+                        android:text="ninja boy"
+                        android:textSize="15sp"
+                        />
+                    <Button
+                        android:text="BUY"
+                        android:background="@drawable/buttons_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <Button
+                        android:text="EQUIP"
+                        android:background="@drawable/buttons_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:src="@drawable/cute_robot"
+                        android:layout_height="100dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/editext_bg"
+                        android:gravity="center_horizontal"
+                        android:text="cute robot"
+                        android:textSize="15sp"
+                        />
+                    <Button
+                        android:text="BUY"
+                        android:background="@drawable/buttons_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <Button
+                        android:text="EQUIP"
+                        android:background="@drawable/buttons_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:src="@drawable/jack_o_lantern_display"
+                        android:layout_height="100dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/editext_bg"
+                        android:gravity="center_horizontal"
+                        android:text="jack o lantern"
+                        android:textSize="15sp"
+                        />
+                    <Button
+                        android:text="BUY"
+                        android:background="@drawable/buttons_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <Button
+                        android:text="EQUIP"
+                        android:background="@drawable/buttons_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
 
 
 
@@ -134,5 +316,13 @@
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="run_game"
+        android:gravity="center"
+        android:background="@color/gold"
+        android:text="PLAY"/>
 
-</LinearLayout>
+    </LinearLayout>

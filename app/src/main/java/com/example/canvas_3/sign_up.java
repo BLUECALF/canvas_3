@@ -16,13 +16,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.ktx.Firebase;
+
+import java.util.HashMap;
 
 public class sign_up extends Activity {
     EditText username,game_password,email;
     String _username,_game_password,_email;
 
-    private FirebaseAuth auth;
+SQLiteDatabase db;
+ContentValues content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +55,10 @@ public class sign_up extends Activity {
         game_DB_helper dbhelper = new game_DB_helper(this);
 
         //sqlite databsae object.
-        SQLiteDatabase  db = dbhelper.getWritableDatabase();
+        db = dbhelper.getWritableDatabase();
 
         //content values
-        ContentValues content = new ContentValues();
+        content = new ContentValues();
         content.put("username",_username);
         content.put("email",_email);
         content.put("game_password",_game_password);
@@ -58,37 +66,100 @@ public class sign_up extends Activity {
         //put to databse and check if its in.
         if(username.getText().toString().equals("")|email.getText().toString().equals("")||game_password.getText().equals(""))
         {
-            Toast.makeText( this, "Please Enter Required data", Toast.LENGTH_SHORT).show();
+            Toast.makeText( this, "Please Enter Required data  !!", Toast.LENGTH_SHORT).show();
         }
         else{
-            long row_no = db.insert("player",null,content);
-            if(row_no==1)
-        {
-            //saving the data was successfull go to play.
-            // we sign up to firebase first
+            // 1check if username & password have been used.
+            // 2 enter player deatils in realtime db
+            //3 register player as new user.
+            // store player data in local storage.
 
-            auth = FirebaseAuth.getInstance();
 
-            auth.createUserWithEmailAndPassword(_email,_game_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
+            //1
+            store_2_realtime_db(_email,_username,_game_password);
 
-                    if(task.isSuccessful()){
-                    Toast.makeText(sign_up.this, "Sign up successfull ", Toast.LENGTH_SHORT).show();
 
-                    Intent gui = new Intent(sign_up.this, GUI_activity.class);
-                    startActivity(gui);
-                    finish();}
-                    else {Toast.makeText(sign_up.this, "Sign up Failed ", Toast.LENGTH_SHORT).show();}
+
+        }
+
+
+
+
+    }
+    public int store_2_realtime_db(String email,String username,String password)
+    {
+        //enter data to realtime database
+        DatabaseReference ref_out = FirebaseDatabase.getInstance("https://canvas-3-b2835-default-rtdb.europe-west1.firebasedatabase.app").getReference();
+
+        HashMap<String,Object> map = new HashMap<>();
+
+        map.put("email",email);
+        map.put("username",username);
+        map.put("game_password",password);
+        // characters player can use.
+        map.put("boy","true");
+        map.put("girl","true");
+        map.put("cat","false");
+        map.put("dog","false");
+        map.put("cute_robot","false");
+        map.put("ninja_boy","false");
+        map.put("ninja_girl","false");
+        map.put("jack_o_lantern","false");
+        map.put("santa_claus","true");
+        map.put("gems","0");
+        map.put("coins","0");
+        map.put("metres","0");
+
+
+        // first we check if there is username like his in the database.
+
+        ref_out.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String _name = snapshot.child("player").child(username).child(username).getValue(String.class);
+                String _email_insame_name = snapshot.child("player").child(username).child("email").getValue(String.class);
+                String Refined_email = email.replace(".","_");
+                String _email = snapshot.child("player").child(Refined_email).child("email").getValue(String.class);
+
+
+                // check if username and email is in database
+
+                if(_name==null&&_email==null&&_email_insame_name==null)
+                {
+                    //save data of the user
+                  DatabaseReference ref_in=  FirebaseDatabase.getInstance("https://canvas-3-b2835-default-rtdb.europe-west1.firebasedatabase.app").getReference();
+                    ref_in.child("player").child(username).updateChildren(map);
+                    ref_in.child("player").child(Refined_email).updateChildren(map);
+
+                    //create player as user
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(username,password);
+
+                    //save to sqlite
+                    long rows = db.insert("player",null,content);
+
+                    if(rows==1)
+                    {
+                        Toast.makeText(sign_up.this, "Registration successful  :) ", Toast.LENGTH_SHORT).show();
+                        Intent gui = new Intent(sign_up.this,GUI_activity.class);
+                        startActivity(gui);
+                    }
+
+                }else {
+                    Toast.makeText(sign_up.this, "Username or email has been used :( \n Or too short password", Toast.LENGTH_LONG).show();
                 }
 
-            });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
-
-        }}
-
-
+        return 0;
 
 
     }

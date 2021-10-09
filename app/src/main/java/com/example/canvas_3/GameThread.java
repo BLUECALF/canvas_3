@@ -3,7 +3,9 @@ package com.example.canvas_3;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Looper;
 import android.view.SurfaceHolder;
+import android.widget.Toast;
 
 public class GameThread  extends Thread{
 
@@ -15,6 +17,7 @@ public class GameThread  extends Thread{
     PlayerView pv;
     SurfaceHolder holder;
     Canvas canvas;
+    int collision;
 
 
     //time variables to determine fps;
@@ -39,6 +42,7 @@ public class GameThread  extends Thread{
         ov = obstaclev;
         holder = sh;
         frames = 0;
+        collision = 0;
 
 
     }
@@ -47,6 +51,7 @@ public class GameThread  extends Thread{
 
     public void run()
     {
+
         starttime = System.currentTimeMillis();
         while(running)
         {
@@ -60,8 +65,76 @@ public class GameThread  extends Thread{
                 gv.draw(canvas);
                 ov.obstacle_update_and_draw(canvas);
 
+
                 pv.draw(canvas);
-                ov.report_collission(canvas,pv.player_jumping_x,pv.player_jumping_y);
+                collision = ov.report_collission(canvas,pv.player_jumping_x,pv.player_jumping_y);
+                // check if collision happened
+                if(collision == 1)
+                {
+                    //collission happened with obstacle 1
+                    //show dialog box
+
+                    //check if player is sheilded from obstacle
+                    if(!ov.obstacle_1_player_sheilded){
+                   gv.gp.runOnUiThread(new Runnable() {
+                       @Override
+                       public void run() {
+                          gv.gp.show_game_over();
+                       }
+
+                   });
+                    //slow down time by 5 sec
+                        try {
+                            sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+
+                    if(ov.obstacle_1_player_sheilded==true)
+                    {
+                        // player clicked watch an advert
+
+                    }else{gv.gp.finish();}
+
+                }
+                if(collision == 2)
+                {
+                    //collission happened with obstacle 2
+                    //show dialog box
+
+
+                    // check if obstacle 2 is not sheilded from player
+                    if(!ov.obstacle_2_player_sheilded){
+                    gv.gp.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            gv.gp.show_game_over();
+                        }
+
+                    });
+                    //slow down time for 5 sec
+                        try {
+                            sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+
+                    if(ov.obstacle_2_player_sheilded ==true)
+                    {
+                        // player clicked watch an advert
+
+                    }else{gv.gp.finish();}
+
+                }
+
+
+
                 frames = frames+1;
 
                 fps();
@@ -100,6 +173,7 @@ public class GameThread  extends Thread{
 
 
         }
+
 
     }
 

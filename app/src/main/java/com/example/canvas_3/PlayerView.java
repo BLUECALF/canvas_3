@@ -25,9 +25,12 @@ public class PlayerView {
     int player_jumping_x;
     int player_jumping_y;
 
+
+
     int player_position_in_map = 0;
 
     String action;
+
 
     //player images;
     //put in a  arraylist of bitmap
@@ -60,6 +63,7 @@ public class PlayerView {
 
         action = "run";
 
+
         paint = new Paint();
         paint.setColor(Color.BLUE);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -76,6 +80,7 @@ public class PlayerView {
 
             player_x = screenWidth/4;
             player_y = screenHeight-200;
+
             player_jumping_y = player_y;
             player_jumping_x = player_x;
 
@@ -204,6 +209,7 @@ public class PlayerView {
             //what happens when player jumps
             player_x = screenWidth/4;
             player_y = screenHeight-200;
+
 
             player_jumping_x = player_x;
             player_jumping_y = player_y + 60;

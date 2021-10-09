@@ -1,9 +1,13 @@
 package com.example.canvas_3;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +16,7 @@ import java.util.Random;
 public class obstacleView {
     Paint paint = new Paint();
     GameThread t;
+    Context con_text;
     //this is the class that will make obstacles to be seen.
 
     //it needs an array list of obstacle images.
@@ -21,6 +26,9 @@ public class obstacleView {
     int screen_width;
     int screen_height;
 
+    int hitbox_x;
+    int hitbox_y;
+
     //it will randomly chose which obstacle is made .
     boolean obstacle_1_created;
     Bitmap obstacle_1_image;
@@ -28,6 +36,7 @@ public class obstacleView {
     int obstacle_1_y;
     String obstacle_1_type;
     int obstacle_1_slide_no;
+    boolean obstacle_1_player_sheilded;
 
     //obstacle 2 data
     boolean obstacle_2_created;
@@ -36,6 +45,7 @@ public class obstacleView {
     int obstacle_2_y;
     String obstacle_2_type;
     int obstacle_2_slide_no;
+    boolean obstacle_2_player_sheilded;
 
     Random random = new Random();
 
@@ -47,11 +57,12 @@ public class obstacleView {
     // CONSTRUCTOR HERE
 
 
-    public obstacleView(ArrayList<Bitmap> obstacleArray,ArrayList<Bitmap> bird_image_array,GameThread thread)
+    public obstacleView(ArrayList<Bitmap> obstacleArray,ArrayList<Bitmap> bird_image_array,GameThread thread,Context context)
     {
         t = thread;
         imageArray = new ArrayList<>(obstacleArray);
         bird_image = new ArrayList<>(bird_image_array);
+        con_text=context;
         obstacle_1_created =  false;
         obstacle_2_created = false;
         obstacle_1_slide_no = 0;
@@ -69,6 +80,7 @@ public class obstacleView {
             obstacle_1_created = true;
             obstacle_1_x = screen_width;
             obstacle_1_y = screen_height - 200;
+            obstacle_1_player_sheilded=false;
 
             //give the obstacle a type
             if(random.nextInt(2) == 0){
@@ -118,6 +130,7 @@ public class obstacleView {
             obstacle_2_created = true;
             obstacle_2_x = obstacle_1_x  +  ((random.nextInt(4) + 5)*100);
             obstacle_2_y = screen_height - 200;
+            obstacle_2_player_sheilded = false;
 
             //give obstacle two a type and image.
             if(random.nextInt(2)==0)
@@ -164,7 +177,7 @@ public class obstacleView {
 
 
     }
-    public void report_collission(Canvas canvas,int player_jump_x,int player_jump_y)
+    public int report_collission(Canvas canvas,int player_jump_x,int player_jump_y)
     {
         Paint paint = new Paint();
         paint.setColor(Color.BLUE);
@@ -172,30 +185,34 @@ public class obstacleView {
 
         //in colision we have to calculate the hitbox
         //in our case it will have its own x and y and width.
-        int hitbox_x = player_jump_x + 20;
-        int hitbox_y  = player_jump_y + 20;
-        int hitbox_width = 60;
+         hitbox_x = player_jump_x + 20;
+         hitbox_y  = player_jump_y + 20;
+        int hitbox_width =60;
         int hitbox_height = 60;
+        int obstacle_1_hitbox_x= obstacle_1_x + 30;
+        int obstacle_1_hitbox_y = obstacle_1_y + 30;
+        int obstacle_2_hitbox_x = obstacle_2_x + 30;
+        int obstacle_2_hitbox_y = obstacle_2_y + 30;
+        int obstacle_width = 40;
+        int obstacle_height = 60;
 
+        if(     hitbox_x < obstacle_1_hitbox_x + obstacle_width &&
+                hitbox_x + hitbox_width > obstacle_1_hitbox_x &&
 
-        if(     hitbox_x < obstacle_1_x + 100 &&
-                hitbox_x + hitbox_width > obstacle_1_x &&
+                hitbox_y < obstacle_1_hitbox_y + obstacle_height &&
+                hitbox_y + hitbox_height > obstacle_1_hitbox_y
+        ){ return 1;// rerurn 1 meaning collision happened
+            }
 
-                hitbox_y < obstacle_1_y + 100 &&
-                hitbox_y + hitbox_width > obstacle_1_y
-        ){canvas.drawText("you hit obstacle 1",screen_width -1000,200,paint); }
+        if(    hitbox_x < obstacle_2_hitbox_x + obstacle_width &&
+                hitbox_x + hitbox_width > obstacle_2_hitbox_x &&
 
-        if(     hitbox_x < obstacle_2_x + 100 &&
-                hitbox_x + hitbox_width > obstacle_2_x &&
-
-                hitbox_y < obstacle_2_y + 100 &&
-                hitbox_y + hitbox_width > obstacle_2_y
-        ){canvas.drawText("you hit obstacle 2",screen_width -1000,200,paint);}
-
-
-
-
-
+                hitbox_y < obstacle_2_hitbox_y + obstacle_height &&
+                hitbox_y + hitbox_height > obstacle_2_hitbox_y
+        ){return 2; // return 1 meaning collission happened
+            }
+        return 0 ; //all went well no collision
     }
+
 
 }

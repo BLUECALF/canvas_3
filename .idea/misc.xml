@@ -7,9 +7,12 @@
         <entry key="app/src/main/res/drawable/editext_bg.xml" value="0.1671875" />
         <entry key="app/src/main/res/drawable/form_bg.xml" value="0.1671875" />
         <entry key="app/src/main/res/layout/activity_game_lobby.xml" value="0.14492753623188406" />
+        <entry key="app/src/main/res/layout/activity_game_over.xml" value="0.13451086956521738" />
+        <entry key="app/src/main/res/layout/activity_gameplay.xml" value="0.10260416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15942028985507245" />
         <entry key="app/src/main/res/layout/activity_main_gui.xml" value="0.15104166666666666" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/gameover_save_me.xml" value="0.13451086956521738" />
       </map>
     </option>
   </component>

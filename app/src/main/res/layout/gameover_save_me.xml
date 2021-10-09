@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:background="@color/white"
+    android:layout_gravity="center"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/editext_bg"
+        android:gravity="center_horizontal"
+        android:text=" GAME OVER "
+        android:textSize="15sp"
+        />
+        <ImageView
+            android:layout_width="100dp"
+            android:src="@drawable/sad_hurt_emoji"
+            android:layout_height="100dp"
+            />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Save me by paying coins "
+        />
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:text="pay 1 coin "
+            android:id="@+id/watch_ad"
+            android:onClick="pay_1_coin"
+            android:background="@drawable/buttons_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:text=" Give Up"
+            android:id="@+id/give_up"
+            android:onClick="give_up"
+            android:background="@drawable/buttons_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

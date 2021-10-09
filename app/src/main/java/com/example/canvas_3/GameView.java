@@ -16,6 +16,7 @@ public class GameView extends SurfaceView {
     //global objects and variables
 
     GameThread thread;
+    gameplay gp;
     PlayerView player;
     obstacleView obstacle;
 
@@ -112,16 +113,17 @@ public class GameView extends SurfaceView {
 
     //constructor
 
-    public GameView(Context context)
+    public GameView(Context context,gameplay activity)
     {
         super(context);
+        gp = activity;
         //giving the bitmap image values.
         //background
         Bg_x =0;
         Bg_y = -1000;
         Bg_x2 = 2560;
 
-        BG = BitmapFactory.decodeResource(getResources(),R.drawable.bg);
+        BG = BitmapFactory.decodeResource(getResources(), R.drawable.bg);
         road = BitmapFactory.decodeResource(getResources(),R.drawable.r_desert_ground);
 
         R0 = BitmapFactory.decodeResource(getResources(),R.drawable.r_run__000);
@@ -235,7 +237,7 @@ public class GameView extends SurfaceView {
 
 
         player = new PlayerView(playerSprites);
-        obstacle = new obstacleView(obstacleImage,bird_image_array,thread);
+        obstacle = new obstacleView(obstacleImage,bird_image_array,thread,context);
         thread = new GameThread(obstacle,this,player,getHolder());
 
         thread.running = true;
@@ -288,6 +290,7 @@ public class GameView extends SurfaceView {
 
     public void draw_road(Canvas canvas)
     {
+
         number_of_pics = (getWidth()/50)*2;
 
         for(int i= 0;i < number_of_pics ;i++)
@@ -306,7 +309,10 @@ public class GameView extends SurfaceView {
 
 
 
+
+
     }
+
 
 
 

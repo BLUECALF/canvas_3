@@ -16,14 +16,14 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    GameView gv;
+
     Toast toast;
     Cursor c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        gv = new GameView(this);
+
         setContentView(R.layout.activity_main);
 
 
