@@ -63,8 +63,8 @@ public class game_lobby extends Activity {
     }
     public void run_game(View v)
     {
-        Intent run_game = new Intent(this,gameplay.class);
-        startActivity(run_game);
+        Intent gameplay = new Intent(this, com.example.canvas_3.gameplay.class);
+        startActivity(gameplay);
     }
 
 

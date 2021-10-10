@@ -29,13 +29,16 @@ public class GameThread  extends Thread{
     long currenttime;
     long passedtime;
 
+    int target_distance;
+
 
 
 
     //constructor
     public GameThread(obstacleView obstaclev,GameView gameview,PlayerView player,SurfaceHolder sh)
     {
-        game_delay = 25;
+        game_delay = 30;
+        target_distance = 100;
         running = false;
         gv = gameview;
         pv = player;
@@ -64,8 +67,7 @@ public class GameThread  extends Thread{
                 canvas = holder.lockCanvas();
                 gv.draw(canvas);
                 ov.obstacle_update_and_draw(canvas);
-
-
+                gv.coin.draw_coin(canvas);
                 pv.draw(canvas);
                 collision = ov.report_collission(canvas,pv.player_jumping_x,pv.player_jumping_y);
                 // check if collision happened
@@ -138,10 +140,34 @@ public class GameThread  extends Thread{
                 frames = frames+1;
 
                 fps();
+                int coin_collide = gv.coin.report_coin_collision(pv.player_jumping_x+10,pv.player_jumping_y+10);
+
+                if(coin_collide==1)// coin collision happened
+                {
+                    gv.coin.coin_created=false; // coin is collected and dissapears
+                    gv.player.player_number_of_coins ++;
+                }
 
                 //unlock and post canvas drawings
 
                 holder.unlockCanvasAndPost(canvas);
+
+                ///INCREASE GAME SPEED IF PLAYER IS PAST 100 METRES.
+                if(pv.player_distance_covered >= target_distance)
+                {
+                    //player past target
+                    target_distance = target_distance + 100;
+                    game_delay = game_delay - 3;
+                    gv.gp.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(gv.getContext(), "(っ◔◡◔)っ    SPEED INCREASED ", Toast.LENGTH_SHORT).show();
+                            // explain to player speed is increased.delay reduced
+                        }
+                    });
+
+                }
+
                 if(pv.action.equals("run"))
                 {try {
                     sleep(game_delay);
@@ -168,6 +194,9 @@ public class GameThread  extends Thread{
 
 
 
+
+
+
             }
             else{continue;}
 
@@ -189,6 +218,9 @@ public class GameThread  extends Thread{
              fps = (int)(frames);
             frames = 0;
           starttime = System.currentTimeMillis();
+          //update player distance covered
+
+          gv.player.player_distance_covered += 5;
         }
 
         Paint paint = new Paint();

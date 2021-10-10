@@ -25,9 +25,11 @@ public class PlayerView {
     int player_jumping_x;
     int player_jumping_y;
 
+    int player_number_of_coins;
 
 
-    int player_position_in_map = 0;
+
+    int player_distance_covered;
 
     String action;
 
@@ -45,6 +47,9 @@ public class PlayerView {
         //array of bitmaps  player images to aquire values;
 
         playerimages = new ArrayList<>(images);
+
+        player_number_of_coins = 20;
+        player_distance_covered = 0;
 
 
         player_x = 0; //player is at 0 first.
@@ -127,74 +132,74 @@ public class PlayerView {
             {canvas.drawBitmap(playerimages.get(10),player_x,player_y-30,null);canvas.drawText(""+screenWidth,100,100,paint);
                 //canvas.drawRect(player_x,player_y-60,player_x+100,player_y +100-60,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-60;
+                player_jumping_y = player_y-30;
             }
             else if(slide_no == 1)
             {canvas.drawBitmap(playerimages.get(11),player_x,player_y-50,null);
                 //canvas.drawRect(player_x,player_y-100,player_x+100,player_y +100-100,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-100;
+                player_jumping_y = player_y-50;
             }
             else if(jump_slide_no == 2)
             {canvas.drawBitmap(playerimages.get(12),player_x,player_y-80,null);
                 //canvas.drawRect(player_x,player_y-160,player_x+100,player_y +100-160,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-160;
+                player_jumping_y = player_y-80;
             }
             else if(jump_slide_no == 3)
             {canvas.drawBitmap(playerimages.get(13),player_x,player_y-110,null);
                 //canvas.drawRect(player_x,player_y-220,player_x+100,player_y +100-220,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-220;
+                player_jumping_y = player_y-110;
             }
             else if(jump_slide_no == 4)
             {canvas.drawBitmap(playerimages.get(14),player_x,player_y-110,null);
                 //canvas.drawRect(player_x,player_y-220,player_x+100,player_y +100-220,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-220;
+                player_jumping_y = player_y-110;
             }
             else if(jump_slide_no == 5)
             {canvas.drawBitmap(playerimages.get(15),player_x,player_y-130,null);
                 //canvas.drawRect(player_x,player_y-260,player_x+100,player_y +100-260,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-260;
+                player_jumping_y = player_y-130;
             }
             else if(jump_slide_no == 6)
             {canvas.drawBitmap(playerimages.get(16),player_x,player_y-130,null);
                 //canvas.drawRect(player_x,player_y-260,player_x+100,player_y +100-260,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-260;
+                player_jumping_y = player_y-130;
             }
             else if(jump_slide_no == 7)
             {canvas.drawBitmap(playerimages.get(17),player_x,player_y-130,null);
                 //canvas.drawRect(player_x,player_y-240,player_x+100,player_y +100-240,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-240;}
+                player_jumping_y = player_y-130;}
             else if(jump_slide_no == 8)
             {canvas.drawBitmap(playerimages.get(18),player_x,player_y-120,null);
                 //canvas.drawRect(player_x,player_y-240,player_x+100,player_y +100-240,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-240;}
+                player_jumping_y = player_y-120;}
             else if(jump_slide_no == 9)
             {canvas.drawBitmap(playerimages.get(19),player_x,player_y-120,null);
                 //canvas.drawRect(player_x,player_y-240,player_x+100,player_y +100-240,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-240;}
+                player_jumping_y = player_y-120;}
             else if(jump_slide_no == 10)
             {canvas.drawBitmap(playerimages.get(19),player_x,player_y-100,null);
                 //canvas.drawRect(player_x,player_y-240,player_x+100,player_y +100-240,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-240;}
+                player_jumping_y = player_y-100;}
             else if(jump_slide_no == 11)
             {canvas.drawBitmap(playerimages.get(19),player_x,player_y-80,null);
                 //canvas.drawRect(player_x,player_y-240,player_x+100,player_y +100-240,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-240;}
+                player_jumping_y = player_y-80;}
             else if(jump_slide_no == 12)
             {canvas.drawBitmap(playerimages.get(19),player_x,player_y- 50,null);
                 //canvas.drawRect(player_x,player_y-240,player_x+100,player_y +100-240,paint);
                 player_jumping_x = player_x;
-                player_jumping_y = player_y-240;}
+                player_jumping_y = player_y-50;}
 
 
                 jump_slide_no++;

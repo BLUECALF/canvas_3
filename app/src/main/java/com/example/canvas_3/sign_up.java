@@ -106,7 +106,7 @@ ContentValues content;
         map.put("ninja_girl","false");
         map.put("jack_o_lantern","false");
         map.put("santa_claus","true");
-        map.put("gems","0");
+        map.put("gems","0"); //currencies
         map.put("coins","0");
         map.put("metres","0");
 

@@ -58,10 +58,11 @@ public class gameplay extends Activity {
             //shield player from obstacle 2
             gv.obstacle.obstacle_2_player_sheilded = true;
         }
+        gv.player.player_number_of_coins -= 1;
 
 
         dialog.dismiss();
-        Toast.makeText(getApplicationContext(), "you have paid 1 coin!!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "you have paid 1 coin !", Toast.LENGTH_SHORT).show();
 
     }
 }

@@ -48,6 +48,17 @@
         android:layout_below="@+id/play"
         android:textSize="30sp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
+        android:text="𝖙𝖎𝖕 :: 𝖕𝖗𝖊𝖘𝖘 𝖙𝖔𝖕 𝖔𝖋 𝖙𝖍𝖊 𝖘𝖈𝖗𝖊𝖊𝖓 𝖙𝖔 𝖏𝖚𝖒𝖕 𝖕𝖗𝖊𝖘𝖘 𝖇𝖔𝖙𝖙𝖔𝖒 𝖙𝖔 𝖘𝖑𝖎𝖉𝖊"
+        android:textSize="20sp"
+        />
+
 
 
 </RelativeLayout>

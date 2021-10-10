@@ -38,4 +38,5 @@ public class GUI_activity extends Activity {
         Intent lobby = new Intent(this,game_lobby.class);
         startActivity(lobby);
     }
+
 }
