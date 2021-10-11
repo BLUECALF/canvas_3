@@ -37,7 +37,7 @@ public class GameView extends SurfaceView {
     }
 
     //CHARACTER SPRITE ARRAY LIST PASSED TO THE PLAYER VIEW CLASS.
-    ArrayList<Bitmap> playerSprites = new ArrayList<>(player_image_array("ninja_girl"));
+    ArrayList<Bitmap> playerSprites = new ArrayList<>(player_image_array("jack_o_lantern"));
     //OBSTACLE VIEW  IMAGES IN AN ARRAY LIST OF BITMAP.
     ArrayList<Bitmap> obstacleImage = new ArrayList<>(get_obstacle_image());
     //IMAGES OF THE BIRD OBSTACLE
@@ -294,6 +294,9 @@ public class GameView extends SurfaceView {
         if(player_choice.equals("cat")){return get_cat_images();}
         if(player_choice.equals("dog")){return get_dog_images();}
         if(player_choice.equals("ninja_girl")){return get_ninja_girl_images();}
+        if(player_choice.equals("ninja_boy")){return get_ninja_boy_images();}
+        if(player_choice.equals("cute_robot")){return get_cute_robot_images();}
+        if(player_choice.equals("jack_o_lantern")){return get_jack_o_lantern_images();}
         return get_boy_images();
     }
     
@@ -976,6 +979,347 @@ public class GameView extends SurfaceView {
 
         return arraylist;
     }
+    
+    // FUNCTION THAT RETURNS IMAGES FOR TH E
+    public ArrayList<Bitmap> get_ninja_boy_images()
+    {
+        ArrayList<Bitmap> arraylist = new ArrayList<>();
+
+        Bitmap R0;
+        Bitmap R1;
+        Bitmap R2;
+        Bitmap R3;
+        Bitmap R4;
+        Bitmap R5;
+        Bitmap R6;
+        Bitmap R7;
+        Bitmap R8;
+        Bitmap R9;
+
+        //Character Bitmaps used Jumping
+        Bitmap J0;
+        Bitmap J1;
+        Bitmap J2;
+        Bitmap J3;
+        Bitmap J4;
+        Bitmap J5;
+        Bitmap J6;
+        Bitmap J7;
+        Bitmap J8;
+        Bitmap J9;
+
+        //character bitmaps used in sliding.
+        Bitmap S0;
+        Bitmap S1;
+        Bitmap S2;
+        Bitmap S3;
+        Bitmap S4;
+        Bitmap S5;
+        Bitmap S6;
+        Bitmap S7;
+        Bitmap S8;
+        Bitmap S9;
+
+
+        R0 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_run_000);
+        R1 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_run_001);
+        R2 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_run_002);
+        R3 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_run_003);
+        R4 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_run_004);
+        R5 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_run_005);
+        R6 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_run_006);
+        R7 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_run_007);
+        R8 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_run_008);
+        R9 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_run_009);
+
+        //giving image values to the bitmaps used in jumping.
+        J0 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_jump_000);
+        J1 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_jump_001);
+        J2 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_jump_002);
+        J3 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_jump_003);
+        J4 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_jump_004);
+        J5 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_jump_005);
+        J6 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_jump_006);
+        J7 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_jump_007);
+        J8 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_jump_008);
+        J9 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_jump_009);
+
+        //giving image values to bitmaps used in sliding.
+
+        S0 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_slide_000);
+        S1 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_slide_001);
+        S2 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_slide_002);
+        S3 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_slide_003);
+        S4 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_slide_004);
+        S5 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_slide_005);
+        S6 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_slide_006);
+        S7 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_slide_007);
+        S8 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_slide_008);
+        S9 = BitmapFactory.decodeResource(getResources(),R.drawable.ninja_boy_slide_009);
+
+        arraylist.add(R0); //ADDING RUN IMAGES
+        arraylist.add(R1);
+        arraylist.add(R2);
+        arraylist.add(R3);
+        arraylist.add(R4);
+        arraylist.add(R5);
+        arraylist.add(R6);
+        arraylist.add(R7);
+        arraylist.add(R8);
+        arraylist.add(R9);
+
+        arraylist.add(J0); //ADDING JUMP IMAGES
+        arraylist.add(J1);
+        arraylist.add(J2);
+        arraylist.add(J3);
+        arraylist.add(J4);
+        arraylist.add(J5);
+        arraylist.add(J6);
+        arraylist.add(J7);
+        arraylist.add(J8);
+        arraylist.add(J9);
+
+        arraylist.add(S0); //adding slide image to bitmap array list arraylist
+        arraylist.add(S1);
+        arraylist.add(S2);
+        arraylist.add(S3);
+        arraylist.add(S4);
+        arraylist.add(S5);
+        arraylist.add(S6);
+        arraylist.add(S7);
+        arraylist.add(S8);
+        arraylist.add(S9);
+
+        return arraylist;
+    }
+
+
+    //FUNCTION TO RETURN cute_robot image array.
+    public ArrayList<Bitmap> get_cute_robot_images()
+    {
+        ArrayList<Bitmap> arraylist = new ArrayList<>();
+
+        Bitmap R0;
+        Bitmap R1;
+        Bitmap R2;
+        Bitmap R3;
+        Bitmap R4;
+        Bitmap R5;
+        Bitmap R6;
+        Bitmap R7;
+        Bitmap R8;
+        Bitmap R9;
+
+        //Character Bitmaps used Jumping
+        Bitmap J0;
+        Bitmap J1;
+        Bitmap J2;
+        Bitmap J3;
+        Bitmap J4;
+        Bitmap J5;
+        Bitmap J6;
+        Bitmap J7;
+        Bitmap J8;
+        Bitmap J9;
+
+        //character bitmaps used in sliding.
+        Bitmap S0;
+        Bitmap S1;
+        Bitmap S2;
+        Bitmap S3;
+        Bitmap S4;
+        Bitmap S5;
+        Bitmap S6;
+        Bitmap S7;
+        Bitmap S8;
+        Bitmap S9;
+
+
+        R0 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_run_000);
+        R1 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_run_001);
+        R2 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_run_002);
+        R3 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_run_003);
+        R4 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_run_004);
+        R5 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_run_005);
+        R6 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_run_006);
+        R7 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_run_007);
+        R8 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_run_008);
+        R9 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_run_009);
+
+        //giving image values to the bitmaps used in jumping.
+        J0 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_jump_000);
+        J1 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_jump_001);
+        J2 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_jump_002);
+        J3 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_jump_003);
+        J4 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_jump_004);
+        J5 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_jump_005);
+        J6 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_jump_006);
+        J7 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_jump_007);
+        J8 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_jump_008);
+        J9 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_jump_009);
+
+        //giving image values to bitmaps used in sliding.
+
+        S0 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_slide_000);
+        S1 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_slide_001);
+        S2 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_slide_002);
+        S3 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_slide_003);
+        S4 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_slide_004);
+        S5 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_slide_005);
+        S6 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_slide_006);
+        S7 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_slide_007);
+        S8 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_slide_008);
+        S9 = BitmapFactory.decodeResource(getResources(),R.drawable.cute_robot_slide_009);
+
+        arraylist.add(R0); //ADDING RUN IMAGES
+        arraylist.add(R1);
+        arraylist.add(R2);
+        arraylist.add(R3);
+        arraylist.add(R4);
+        arraylist.add(R5);
+        arraylist.add(R6);
+        arraylist.add(R7);
+        arraylist.add(R8);
+        arraylist.add(R9);
+
+        arraylist.add(J0); //ADDING JUMP IMAGES
+        arraylist.add(J1);
+        arraylist.add(J2);
+        arraylist.add(J3);
+        arraylist.add(J4);
+        arraylist.add(J5);
+        arraylist.add(J6);
+        arraylist.add(J7);
+        arraylist.add(J8);
+        arraylist.add(J9);
+
+        arraylist.add(S0); //adding slide image to bitmap array list arraylist
+        arraylist.add(S1);
+        arraylist.add(S2);
+        arraylist.add(S3);
+        arraylist.add(S4);
+        arraylist.add(S5);
+        arraylist.add(S6);
+        arraylist.add(S7);
+        arraylist.add(S8);
+        arraylist.add(S9);
+
+        return arraylist;
+    }
+
+    //FUNCTION TO RETURN jack_o_lantern image array.
+    public ArrayList<Bitmap> get_jack_o_lantern_images()
+    {
+        ArrayList<Bitmap> arraylist = new ArrayList<>();
+
+        Bitmap R0;
+        Bitmap R1;
+        Bitmap R2;
+        Bitmap R3;
+        Bitmap R4;
+        Bitmap R5;
+        Bitmap R6;
+        Bitmap R7;
+        Bitmap R8;
+        Bitmap R9;
+
+        //Character Bitmaps used Jumping
+        Bitmap J0;
+        Bitmap J1;
+        Bitmap J2;
+        Bitmap J3;
+        Bitmap J4;
+        Bitmap J5;
+        Bitmap J6;
+        Bitmap J7;
+        Bitmap J8;
+        Bitmap J9;
+
+        //character bitmaps used in sliding.
+        Bitmap S0;
+        Bitmap S1;
+        Bitmap S2;
+        Bitmap S3;
+        Bitmap S4;
+        Bitmap S5;
+        Bitmap S6;
+        Bitmap S7;
+        Bitmap S8;
+        Bitmap S9;
+
+
+        R0 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_run_000);
+        R1 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_run_001);
+        R2 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_run_002);
+        R3 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_run_003);
+        R4 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_run_004);
+        R5 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_run_005);
+        R6 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_run_006);
+        R7 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_run_007);
+        R8 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_run_008);
+        R9 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_run_009);
+
+        //giving image values to the bitmaps used in jumping.
+        J0 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_jump_000);
+        J1 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_jump_001);
+        J2 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_jump_002);
+        J3 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_jump_003);
+        J4 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_jump_004);
+        J5 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_jump_005);
+        J6 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_jump_006);
+        J7 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_jump_007);
+        J8 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_jump_008);
+        J9 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_jump_009);
+
+        //giving image values to bitmaps used in sliding.
+
+        S0 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_slide_000);
+        S1 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_slide_001);
+        S2 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_slide_002);
+        S3 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_slide_003);
+        S4 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_slide_004);
+        S5 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_slide_005);
+        S6 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_slide_006);
+        S7 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_slide_007);
+        S8 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_slide_008);
+        S9 = BitmapFactory.decodeResource(getResources(),R.drawable.jack_o_lantern_slide_009);
+
+        arraylist.add(R0); //ADDING RUN IMAGES
+        arraylist.add(R1);
+        arraylist.add(R2);
+        arraylist.add(R3);
+        arraylist.add(R4);
+        arraylist.add(R5);
+        arraylist.add(R6);
+        arraylist.add(R7);
+        arraylist.add(R8);
+        arraylist.add(R9);
+
+        arraylist.add(J0); //ADDING JUMP IMAGES
+        arraylist.add(J1);
+        arraylist.add(J2);
+        arraylist.add(J3);
+        arraylist.add(J4);
+        arraylist.add(J5);
+        arraylist.add(J6);
+        arraylist.add(J7);
+        arraylist.add(J8);
+        arraylist.add(J9);
+
+        arraylist.add(S0); //adding slide image to bitmap array list arraylist
+        arraylist.add(S1);
+        arraylist.add(S2);
+        arraylist.add(S3);
+        arraylist.add(S4);
+        arraylist.add(S5);
+        arraylist.add(S6);
+        arraylist.add(S7);
+        arraylist.add(S8);
+        arraylist.add(S9);
+
+        return arraylist;
+    }
+
     
 
 
