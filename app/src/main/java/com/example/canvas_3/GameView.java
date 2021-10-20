@@ -1,6 +1,8 @@
 package com.example.canvas_3;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -9,6 +11,15 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -21,6 +32,13 @@ public class GameView extends SurfaceView {
     PlayerView player;
     obstacleView obstacle;
     CoinView coin;
+    String skin_choice;
+
+    //player details
+    String username;
+    game_DB_helper db_helper;
+    DatabaseReference ref;
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -36,8 +54,7 @@ public class GameView extends SurfaceView {
         return super.onTouchEvent(event);
     }
 
-    //CHARACTER SPRITE ARRAY LIST PASSED TO THE PLAYER VIEW CLASS.
-    ArrayList<Bitmap> playerSprites = new ArrayList<>(player_image_array("jack_o_lantern"));
+
     //OBSTACLE VIEW  IMAGES IN AN ARRAY LIST OF BITMAP.
     ArrayList<Bitmap> obstacleImage = new ArrayList<>(get_obstacle_image());
     //IMAGES OF THE BIRD OBSTACLE
@@ -64,6 +81,8 @@ public class GameView extends SurfaceView {
     public GameView(Context context,gameplay activity)
     {
         super(context);
+
+
         gp = activity;
         //giving the bitmap image values.
         //background
@@ -76,6 +95,10 @@ public class GameView extends SurfaceView {
 
 
         //adding bitmaps to the array list.
+        //CHARACTER SPRITE ARRAY LIST PASSED TO THE PLAYER VIEW CLASS.
+        ArrayList<Bitmap> playerSprites = new ArrayList<>(player_image_array(gp.player_skin_choice));
+
+
         
 
 
@@ -87,6 +110,7 @@ public class GameView extends SurfaceView {
         thread.running = true;
         thread.start();
 
+        get_player_coins_from_db();
     }
 
     //GameView draw method.
@@ -1320,8 +1344,37 @@ public class GameView extends SurfaceView {
         return arraylist;
     }
 
-    
+    public void get_player_coins_from_db()
+    {
+        db_helper = new game_DB_helper(getContext());
+
+        SQLiteDatabase db = db_helper.getReadableDatabase();
+
+        String fields[]={"username"};
+        Cursor c = db.query("player",fields,null,null,null,null,null);
+        c.moveToFirst();
+        username = c.getString(0);
+        ref = FirebaseDatabase.getInstance("https://canvas-3-b2835-default-rtdb.europe-west1.firebasedatabase.app").getReference();
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                player.player_number_of_coins= Integer.parseInt(snapshot.child("player").child(username).child("coins").getValue(String.class));
 
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        }
+
+        public void save_player_coins_in_db()
+        {
+            DatabaseReference ref_store = FirebaseDatabase.getInstance("https://canvas-3-b2835-default-rtdb.europe-west1.firebasedatabase.app").getReference();
+            String new_coins = Integer.toString(player.player_number_of_coins);
+            ref_store.child("player").child(username).child("coins").setValue(new_coins);
+             }
 
 }

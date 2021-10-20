@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -14,15 +15,22 @@ import android.widget.Toast;
 public class gameplay extends Activity {
     GameView gv;
     Dialog dialog;
+    String player_skin_choice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent gameplay = getIntent();
+        player_skin_choice = gameplay.getStringExtra("playerschoice");
         gv = new GameView(this,this);
+
+        Toast.makeText(this,"Skin choice\n\n" +player_skin_choice, Toast.LENGTH_LONG).show();
+        gv.skin_choice =this.player_skin_choice;
+
+        Toast.makeText(this,"Skin choice in gv\n\n" +gv.skin_choice, Toast.LENGTH_LONG).show();
+
         setContentView(gv);
-
-
-
 
     }
     public void show_game_over()
@@ -41,6 +49,7 @@ public class gameplay extends Activity {
     {
         // code that runs if player gives up
         dialog.dismiss();
+        gv.save_player_coins_in_db();
         finish();
     }
     public void pay_1_coin(View v)

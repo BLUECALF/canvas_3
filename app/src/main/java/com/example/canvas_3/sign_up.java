@@ -93,9 +93,9 @@ ContentValues content;
 
         HashMap<String,Object> map = new HashMap<>();
 
-        map.put("email",email);
-        map.put("username",username);
-        map.put("game_password",password);
+        map.put("email",_email);
+        map.put("username",_username);
+        map.put("game_password",_game_password);
         // characters player can use.
         map.put("boy","true");
         map.put("girl","true");
@@ -117,15 +117,15 @@ ContentValues content;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String _name = snapshot.child("player").child(username).child(username).getValue(String.class);
+                String _name_in_db = snapshot.child("player").child(username).child("username").getValue(String.class);
                 String _email_insame_name = snapshot.child("player").child(username).child("email").getValue(String.class);
                 String Refined_email = email.replace(".","_");
-                String _email = snapshot.child("player").child(Refined_email).child("email").getValue(String.class);
+                String _email_in_db = snapshot.child("player").child(Refined_email).child("email").getValue(String.class);
 
 
                 // check if username and email is in database
 
-                if(_name==null&&_email==null&&_email_insame_name==null)
+                if(_name_in_db==null&&_email_in_db==null&&_email_insame_name==null)
                 {
                     //save data of the user
                   DatabaseReference ref_in=  FirebaseDatabase.getInstance("https://canvas-3-b2835-default-rtdb.europe-west1.firebasedatabase.app").getReference();
@@ -133,7 +133,7 @@ ContentValues content;
                     ref_in.child("player").child(Refined_email).updateChildren(map);
 
                     //create player as user
-                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(username,password);
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password);
 
                     //save to sqlite
                     long rows = db.insert("player",null,content);

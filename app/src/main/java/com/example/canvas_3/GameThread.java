@@ -1,11 +1,21 @@
 package com.example.canvas_3;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Looper;
 import android.view.SurfaceHolder;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class GameThread  extends Thread{
 
@@ -99,7 +109,7 @@ public class GameThread  extends Thread{
                     {
                         // player clicked watch an advert
 
-                    }else{gv.gp.finish();}
+                    }else{gv.save_player_coins_in_db(); gv.gp.finish();}
 
                 }
                 if(collision == 2)
@@ -131,7 +141,11 @@ public class GameThread  extends Thread{
                     {
                         // player clicked watch an advert
 
-                    }else{gv.gp.finish();}
+                    }else{
+                        gv.save_player_coins_in_db();
+                        gv.gp.finish(); //save player coins before finishing game.
+
+                    }
 
                 }
 
@@ -144,7 +158,7 @@ public class GameThread  extends Thread{
 
                 if(coin_collide==1)// coin collision happened
                 {
-                    gv.coin.coin_created=false; // coin is collected and dissapears
+                    gv.coin.coin_created = false; // coin is collected and dissapears
                     gv.player.player_number_of_coins ++;
                 }
 
@@ -229,5 +243,6 @@ public class GameThread  extends Thread{
 
         canvas.drawText(" FPS :  "+fps,10,50,paint);
     }
+
 }
 

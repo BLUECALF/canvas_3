@@ -1,9 +1,19 @@
 package com.example.canvas_3;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -37,6 +47,7 @@ public class PlayerView {
     //player images;
     //put in a  arraylist of bitmap
     ArrayList<Bitmap> playerimages;
+    DatabaseReference ref;
 
 
 
@@ -48,7 +59,9 @@ public class PlayerView {
 
         playerimages = new ArrayList<>(images);
 
-        player_number_of_coins = 20;
+
+
+        player_number_of_coins = 10;
         player_distance_covered = 0;
 
 
@@ -78,6 +91,7 @@ public class PlayerView {
 
     //player draw method
     public void draw(Canvas canvas){
+
 
 
         if(action.equals("run"))
@@ -265,7 +279,5 @@ public class PlayerView {
 
 
     }
-
-
 
 }
