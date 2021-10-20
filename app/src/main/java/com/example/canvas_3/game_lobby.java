@@ -32,9 +32,9 @@ public class game_lobby extends Activity {
 
     TextView coins;
     TextView total_metres;
+    TextView gems;
 
-     int _coins;
-     int _total_metres;
+
 
 
     @Override
@@ -51,9 +51,22 @@ public class game_lobby extends Activity {
 
         coins = (TextView)findViewById(R.id.coins);
         total_metres =(TextView) findViewById(R.id.total_metres);
+        gems =(TextView) findViewById(R.id.gems);
+        get_username_from_sqlite();
 
 
+    }
+    public void get_username_from_sqlite()
+    {
 
+        //get username from sqlite database.
+
+        SQLiteDatabase db = db_helper.getReadableDatabase();
+
+        String fields[]={"username"};
+        Cursor c = db.query("player",fields,null,null,null,null,null);
+        c.moveToFirst();
+        username = c.getString(0);
 
 
     }
@@ -70,26 +83,20 @@ public class game_lobby extends Activity {
     // funtion to get coins and metres details from database;
     public void get_player_coins_n_metres_from_db()
     {
-        db_helper = new game_DB_helper(this);
-
-        SQLiteDatabase db = db_helper.getReadableDatabase();
-
-        String fields[]={"username"};
-        Cursor c = db.query("player",fields,null,null,null,null,null);
-        c.moveToFirst();
-        username = c.getString(0);
         DatabaseReference ref = FirebaseDatabase.getInstance("https://canvas-3-b2835-default-rtdb.europe-west1.firebasedatabase.app").getReference();
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int  _coins =Integer.parseInt(snapshot.child("player").child(username).child("coins").getValue(String.class));
+                int _gems = Integer.parseInt(snapshot.child("player").child(username).child("gems").getValue(String.class));
                 int    _total_metres = Integer.parseInt(snapshot.child("player").child(username).child("metres").getValue(String.class));
                 System.out.println("\n\n the coins in lobby I are"+_coins);
                 System.out.println("\n\n the metres in lobby I  are"+_total_metres);
 
                 // set coins & metres to be number of coins in db
-                coins.setText("COINS : "+_coins);
-                total_metres.setText("TOTAL METRES : "+_total_metres);
+                coins.setText(" Coins : "+_coins);
+                total_metres.setText(" Total metres: "+_total_metres);
+                gems.setText(" Gems: "+_gems);
 
 
 
@@ -123,21 +130,38 @@ public class game_lobby extends Activity {
 
                 int player_cash =Integer.parseInt(snapshot.child("player").child(playername).child("coins").getValue().toString());
 
-                if(skin_owned.equals("false")&&player_cash>=price)
+                int player_gems = Integer.parseInt(snapshot.child("player").child(playername).child("gems").getValue().toString());
+
+
+                if(skin_owned.equals("false")&&(player_cash>=price||player_gems>=(price/10)))
                 {
                     //player has ability to buy the skin and can buy.
                     //buy skin.
-                  ref.child("player").child(playername).child(skin_name).setValue("true");
+                  if(player_cash>=price)
+                  { ref.child("player").child(playername).child(skin_name).setValue("true");
 
-                  int new_player_cash = player_cash - price;
+                      int new_player_cash = player_cash - price;
 
-                  ref.child("player").child(playername).child("coins").setValue(new_player_cash);
+                      ref.child("player").child(playername).child("coins").setValue(Integer.toString(new_player_cash));
 
-                    Toast.makeText(game_lobby.this, "Skin purchase Successfull", Toast.LENGTH_SHORT).show();
+                      Toast.makeText(game_lobby.this, "Skin purchase of "+ skin_name +" using coins Successfull", Toast.LENGTH_SHORT).show();
+                      coins.setText(" Coins : "+new_player_cash);
+                  }else{
+                      //this means he will use gems to buy skins.
+                      ref.child("player").child(playername).child(skin_name).setValue("true");
+
+                      int new_player_gems = player_gems - (price/10);
+
+                      ref.child("player").child(playername).child("gems").setValue(Integer.toString(new_player_gems));
+
+                      Toast.makeText(game_lobby.this, "Skin purchase of "+ skin_name +" using gems Successfull", Toast.LENGTH_SHORT).show();
+                      gems.setText(" Gems : "+new_player_gems);
+
+                  }
 
 
-                }else if(skin_owned.equals("true")){Toast.makeText(game_lobby.this, "Skin purchase : FAILED :\n You Have This Skin", Toast.LENGTH_LONG).show();
-                }else{ Toast.makeText(game_lobby.this, "Skin purchase Failed \n Your Coins Are Not Enough ", Toast.LENGTH_SHORT).show();
+                }else if(skin_owned.equals("true")){Toast.makeText(game_lobby.this, "Skin purchase : FAILED :\n You Have "+ skin_name +" Skin", Toast.LENGTH_LONG).show();
+                }else{ Toast.makeText(game_lobby.this, "Skin purchase "+skin_name+" Failed \n Your Coins Are Not Enough ", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -153,22 +177,133 @@ public class game_lobby extends Activity {
     public void buy_skin_cat(View v)
     {
         String skin ="cat";
-        int price = 10;
-
-        //get username from sqlite database.
-
-        SQLiteDatabase db = db_helper.getReadableDatabase();
-
-        String fields[]={"username"};
-       Cursor c = db.query("player",fields,null,null,null,null,null);
-       c.moveToFirst();
-       username = c.getString(0);
-
+        int price = 50;
        buy_skin(username,skin,price);
-
-
+    }
+    public void buy_skin_dog(View v)
+    {
+        String skin ="dog";
+        int price = 50;
+        buy_skin(username,skin,price);
+    }
+    public void buy_skin_ninja_boy(View v)
+    {
+        String skin ="ninja_boy";
+        int price = 100;
+        buy_skin(username,skin,price);
+    }
+    public void buy_skin_ninja_girl(View v)
+    {
+        String skin ="ninja_girl";
+        int price = 100;
+        buy_skin(username,skin,price);
+    }
+    public void buy_skin_santa_claus(View v)
+    {
+        String skin ="santa_claus";
+        int price = 300;
+        buy_skin(username,skin,price);
+    }
+    public void buy_skin_cute_robot(View v)
+    {
+        String skin ="cute_robot";
+        int price = 200;
+        buy_skin(username,skin,price);
+    }
+    public void buy_skin_jack_o_lantern(View v)
+    {
+        String skin ="jack_o_lantern";
+        int price = 500;
+        buy_skin(username,skin,price);
     }
 
+    
+    // CODE FOR EQUIPING THE SKINS .
+    public void equip_skin(String playername,String skin_name)
+    {
+        //maake firebase database reference
+        DatabaseReference ref = FirebaseDatabase.getInstance("https://canvas-3-b2835-default-rtdb.europe-west1.firebasedatabase.app").getReference();
+
+        //1 check if skin is owned,if NOT DONT ALLOW EQUIP
+       //2 MAKE SKIN TO BE EQUIPED 
+
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String skin_owned = snapshot.child("player").child(playername).child(skin_name).getValue().toString();
+
+               
+
+                if(skin_owned.equals("true"))
+                {
+                    //player owns the skin and now can equip the skin.
+                  player_skin_choice = skin_name;
+                    Toast.makeText(game_lobby.this, "You are using "+ skin_name +" skin now !", Toast.LENGTH_SHORT).show();
+
+
+                }else if(skin_owned.equals("false")){Toast.makeText(game_lobby.this, "You don't have "+ skin_name +" Skin !!", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }public void equip_skin_boy(View v)
+    {
+        String skin = "boy";
+        equip_skin(username,skin);
+    }
+    public void equip_skin_girl(View v)
+    {
+        String skin ="girl";
+        equip_skin(username,skin);
+    }
+    public void equip_skin_cat(View v)
+    {
+        String skin = "cat";
+        equip_skin(username,skin);
+    }
+    public void equip_skin_dog(View v)
+    {
+        String skin = "dog";
+        equip_skin(username,skin);
+    }
+    public void equip_skin_ninja_boy(View v)
+    {
+        String skin = "ninja_boy";
+        equip_skin(username,skin);
+    }
+    public void equip_skin_ninja_girl(View v)
+    {
+        String skin = "ninja_girl";
+        equip_skin(username,skin);
+    }
+    public void equip_skin_santa_claus(View v)
+    {
+        String skin = "santa_claus";
+        equip_skin(username,skin);
+    }
+    public void equip_skin_cute_robot(View v)
+    {
+        String skin = "cute_robot";
+        equip_skin(username,skin);
+    }
+    public void equip_skin_jack_o_lantern(View v)
+    {
+        String skin = "jack_o_lantern";
+        equip_skin(username,skin);
+    }
+
+    // watching adverts for gems.
+    public void watch_advert_for_gems(View v)
+    {
+        Toast.makeText(this, "Advert loading (1 ad = 1 gem)", Toast.LENGTH_SHORT).show();
+    }
 
 
 }

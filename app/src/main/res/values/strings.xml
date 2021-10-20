@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">canvas_3</string>
+    <string name="app_name">𝔍𝔞𝔫𝔤𝔴𝔞 ℜ𝔲𝔫</string>
     <string name="database_url">https://canvas-3-b2835-default-rtdb.europe-west1.firebasedatabase.app</string>
     <string name="title_activity_game_over">game_over_activity</string>
     <string name="dummy_button">Dummy Button</string>

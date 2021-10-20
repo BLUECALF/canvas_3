@@ -11,7 +11,7 @@
     <LinearLayout
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
@@ -21,24 +21,41 @@
             android:textSize="30sp"
             />
         <TextView
-            android:layout_marginLeft="20dp"
-            android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:id="@+id/coins"
-            android:text="COINS : "
-            android:textColor="@color/tea_brown"
-            android:textSize="30sp"
+            android:text=" Coins: "
+            android:padding="7dp"
+            android:background="@drawable/currency_box"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             />
         <TextView
-            android:layout_marginLeft="20dp"
-            android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:id="@+id/total_metres"
-            android:text="TOTAL METRES : "
-            android:textColor="@color/green"
-            android:textSize="30sp"
+            android:padding="7dp"
+            android:text=" Total metres:"
+            android:textColor="@color/white"
+            android:background="@drawable/currency_box"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/gems"
+            android:padding="7dp"
+            android:text=" Gems:"
+            android:textColor="@color/white"
+            android:background="@drawable/currency_box_with_plus"
+            android:onClick="watch_advert_for_gems"
+            android:textSize="15sp"
             />
     </LinearLayout>
 
@@ -78,15 +95,24 @@
                         android:textSize="15sp"
 
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/green"
+                        android:gravity="center_horizontal"
+                        android:text=" Price : 000 coins or 00 gems"
+                        android:textSize="7sp"
+
+                        />
                     <Button
                         android:text=" FREE "
                         android:background="@drawable/buttons_bg"
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <Button
                         android:text="EQUIP"
                         android:background="@drawable/buttons_bg"
+                        android:onClick="equip_skin_boy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -108,6 +134,15 @@
                         android:text="Dudess"
                         android:textSize="15sp"
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/green"
+                        android:gravity="center_horizontal"
+                        android:text=" Price : 000 coins or 00 gems"
+                        android:textSize="7sp"
+
+                        />
                     <Button
                         android:text=" FREE "
                         android:background="@drawable/buttons_bg"
@@ -116,6 +151,7 @@
                     <Button
                         android:text="EQUIP"
                         android:background="@drawable/buttons_bg"
+                        android:onClick="equip_skin_girl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -139,6 +175,15 @@
                         android:text="Kitty"
                         android:textSize="15sp"
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/green"
+                        android:gravity="center_horizontal"
+                        android:text=" Price : 050 coins or 05 gems"
+                        android:textSize="7sp"
+
+                        />
 
                     <Button
                         android:text=" BUY "
@@ -149,6 +194,7 @@
                     <Button
                         android:text="EQUIP"
                         android:background="@drawable/buttons_bg"
+                        android:onClick="equip_skin_cat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -172,17 +218,27 @@
                         android:text="Puppy"
                         android:textSize="15sp"
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/green"
+                        android:gravity="center_horizontal"
+                        android:text=" Price : 050 coins or 05 gems"
+                        android:textSize="7sp"
+
+                        />
                     <Button
                         android:text="BUY"
                         android:background="@drawable/buttons_bg"
                         android:layout_width="match_parent"
+                        android:onClick="buy_skin_dog"
                         android:layout_height="wrap_content"/>
                     <Button
                         android:text="EQUIP"
                         android:background="@drawable/buttons_bg"
+                        android:onClick="equip_skin_dog"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-
 
                 </LinearLayout>
                 <LinearLayout
@@ -203,14 +259,26 @@
                         android:text="santa claus"
                         android:textSize="15sp"
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/green"
+                        android:gravity="center_horizontal"
+                        android:text=" Price : 300 coins or 30 gems"
+                        android:textSize="7sp"
+
+                        />
                     <Button
                         android:text="BUY"
                         android:background="@drawable/buttons_bg"
                         android:layout_width="match_parent"
+                        android:onClick="buy_skin_santa_claus"
                         android:layout_height="wrap_content"/>
+
                     <Button
                         android:text="EQUIP"
                         android:background="@drawable/buttons_bg"
+                        android:onClick="equip_skin_santa_claus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -232,14 +300,25 @@
                         android:text="ninja girl"
                         android:textSize="15sp"
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/green"
+                        android:gravity="center_horizontal"
+                        android:text=" Price : 100 coins or 10 gems"
+                        android:textSize="7sp"
+
+                        />
                     <Button
                         android:text="BUY"
                         android:background="@drawable/buttons_bg"
                         android:layout_width="match_parent"
+                        android:onClick="buy_skin_ninja_girl"
                         android:layout_height="wrap_content"/>
                     <Button
                         android:text="EQUIP"
                         android:background="@drawable/buttons_bg"
+                        android:onClick="equip_skin_ninja_girl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -261,14 +340,25 @@
                         android:text="ninja boy"
                         android:textSize="15sp"
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/green"
+                        android:gravity="center_horizontal"
+                        android:text=" Price : 100 coins or 10 gems"
+                        android:textSize="7sp"
+
+                        />
                     <Button
                         android:text="BUY"
+                        android:onClick="buy_skin_ninja_boy"
                         android:background="@drawable/buttons_bg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <Button
                         android:text="EQUIP"
                         android:background="@drawable/buttons_bg"
+                        android:onClick="equip_skin_ninja_boy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -292,14 +382,25 @@
                         android:text="cute robot"
                         android:textSize="15sp"
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/green"
+                        android:gravity="center_horizontal"
+                        android:text=" Price : 200 coins or 20 gems"
+                        android:textSize="7sp"
+
+                        />
                     <Button
                         android:text="BUY"
+                        android:onClick="buy_skin_cute_robot"
                         android:background="@drawable/buttons_bg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <Button
                         android:text="EQUIP"
                         android:background="@drawable/buttons_bg"
+                        android:onClick="equip_skin_cute_robot"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -321,14 +422,25 @@
                         android:text="jack o lantern"
                         android:textSize="15sp"
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/green"
+                        android:gravity="center_horizontal"
+                        android:text=" Price : 500 coins or 50 gems"
+                        android:textSize="7sp"
+
+                        />
                     <Button
                         android:text="BUY"
                         android:background="@drawable/buttons_bg"
+                        android:onClick="buy_skin_jack_o_lantern"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <Button
                         android:text="EQUIP"
                         android:background="@drawable/buttons_bg"
+                        android:onClick="equip_skin_jack_o_lantern"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>

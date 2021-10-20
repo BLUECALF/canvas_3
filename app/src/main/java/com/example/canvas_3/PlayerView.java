@@ -36,6 +36,7 @@ public class PlayerView {
     int player_jumping_y;
 
     int player_number_of_coins;
+    int player_total_distance;
 
 
 
@@ -63,6 +64,7 @@ public class PlayerView {
 
         player_number_of_coins = 10;
         player_distance_covered = 0;
+        player_total_distance = 0;
 
 
         player_x = 0; //player is at 0 first.

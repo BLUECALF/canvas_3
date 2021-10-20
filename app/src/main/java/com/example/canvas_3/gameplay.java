@@ -24,12 +24,6 @@ public class gameplay extends Activity {
         Intent gameplay = getIntent();
         player_skin_choice = gameplay.getStringExtra("playerschoice");
         gv = new GameView(this,this);
-
-        Toast.makeText(this,"Skin choice\n\n" +player_skin_choice, Toast.LENGTH_LONG).show();
-        gv.skin_choice =this.player_skin_choice;
-
-        Toast.makeText(this,"Skin choice in gv\n\n" +gv.skin_choice, Toast.LENGTH_LONG).show();
-
         setContentView(gv);
 
     }

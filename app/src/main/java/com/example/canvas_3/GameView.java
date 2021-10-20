@@ -1359,6 +1359,8 @@ public class GameView extends SurfaceView {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 player.player_number_of_coins= Integer.parseInt(snapshot.child("player").child(username).child("coins").getValue(String.class));
+                // also we need the distance player has coverd ever from db
+                player.player_total_distance = Integer.parseInt(snapshot.child("player").child(username).child("metres").getValue(String.class));
 
 
             }
@@ -1375,6 +1377,10 @@ public class GameView extends SurfaceView {
             DatabaseReference ref_store = FirebaseDatabase.getInstance("https://canvas-3-b2835-default-rtdb.europe-west1.firebasedatabase.app").getReference();
             String new_coins = Integer.toString(player.player_number_of_coins);
             ref_store.child("player").child(username).child("coins").setValue(new_coins);
+
+            // save player distancovered to realtime db
+            String new_metres = Integer.toString(player.player_distance_covered + player.player_total_distance);
+            ref_store.child("player").child(username).child("metres").setValue(new_metres);
              }
 
 }
