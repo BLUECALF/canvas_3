@@ -10,14 +10,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class GUI_activity extends Activity {
     TextView username;
+    private static final String TAG = "MainActivity";
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_gui);
 
+        // load and show banner advert
+        show_ad();
         username = findViewById(R.id.username);
 
         //find username from sql database.
@@ -33,6 +40,15 @@ public class GUI_activity extends Activity {
        username.setText("UserName : "+c.getString(0));
 
     }
+
+    private void show_ad() {
+
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+
     public void open_lobby(View v)
     {
         Intent lobby = new Intent(this,game_lobby.class);

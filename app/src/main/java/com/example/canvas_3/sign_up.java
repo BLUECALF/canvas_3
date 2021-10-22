@@ -68,6 +68,8 @@ ContentValues content;
         {
             Toast.makeText( this, "Please Enter Required data  !!", Toast.LENGTH_SHORT).show();
         }
+        else if(!email.getText().toString().trim().contains(".")){
+            Toast.makeText( this, "Please Enter Correct Email Address  !!", Toast.LENGTH_SHORT).show();        }
         else{
             // 1check if username & password have been used.
             // 2 enter player deatils in realtime db
@@ -106,7 +108,7 @@ ContentValues content;
         map.put("ninja_girl","false");
         map.put("jack_o_lantern","false");
         map.put("santa_claus","true");
-        map.put("gems","20"); //currencies
+        map.put("gems","1"); //currencies
         map.put("coins","20");
         map.put("metres","0");
 

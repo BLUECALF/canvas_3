@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
 
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
 
     android:background="@drawable/desert_image"
     tools:context=".GUI_activity"
@@ -39,14 +40,28 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" CHAT "
-        android:padding="10dp"
-        android:layout_marginTop="20dp"
+        android:text=" SPECIAL THANKS "
+        android:padding="0dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/chat"
         android:background="@drawable/buttons_bg"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/play"
-        android:textSize="30sp"/>
+        android:textSize="20sp"/>
+
+
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/play"
+        ads:adSize="BANNER"
+        android:layout_marginTop="10dp"
+        ads:adUnitId="@string/banner_ad_unit_id">
+    </com.google.android.gms.ads.AdView>
 
     <TextView
         android:layout_width="wrap_content"

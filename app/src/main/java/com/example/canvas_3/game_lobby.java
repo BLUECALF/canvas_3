@@ -11,12 +11,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +44,14 @@ public class game_lobby extends Activity {
     TextView total_metres;
     TextView gems;
 
+    MediaPlayer lobby_music_sound;
+
+    // ADVERTISEMENT VARRIABLES
+    private RewardedAd mRewardedAd;
+    private final String TAG = "game_lobby_activity";
+
+    boolean watched_ad = false;
+
 
 
 
@@ -42,10 +60,18 @@ public class game_lobby extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_lobby);
 
+        //load advert
+        load_advert();
+
+        //initialize and run the lobby music
+        lobby_music_sound = MediaPlayer.create(game_lobby.this, R.raw.lobby_music);
+        lobby_music_sound.setLooping(true);
+        lobby_music_sound.start();
+
         //sqlite databse helper
 
         db_helper = new game_DB_helper(this);
-        player_skin_choice = "ninja_boy";
+        player_skin_choice = "boy";
 
         get_player_coins_n_metres_from_db();
 
@@ -302,7 +328,132 @@ public class game_lobby extends Activity {
     // watching adverts for gems.
     public void watch_advert_for_gems(View v)
     {
+        // code to WATCHING ADS FOR THE GEMS
         Toast.makeText(this, "Advert loading (1 ad = 1 gem)", Toast.LENGTH_SHORT).show();
+
+        show_advert_to_user();
+    }
+
+    private void load_advert() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917",
+                adRequest, new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error.
+                        Toast.makeText(game_lobby.this, "Advert FAILED to load !", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, loadAdError.getMessage());
+                        mRewardedAd = null;
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                        mRewardedAd = rewardedAd;
+                        Log.d(TAG, "Ad was loaded.");
+                        show_full_screen();
+                    }
+                });
+
+    }
+    public void show_full_screen() // funcon to show the advert in full screen
+    {mRewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+        @Override
+        public void onAdShowedFullScreenContent() {
+            // Called when ad is shown.
+            Log.d(TAG, "Ad was shown.");
+        }
+
+        @Override
+        public void onAdFailedToShowFullScreenContent(AdError adError) {
+            // Called when ad fails to show.
+            Log.d(TAG, "Ad failed to show.");
+        }
+
+        @Override
+        public void onAdDismissedFullScreenContent() {
+            // Called when ad is dismissed.
+            // Set the ad reference to null so you don't show the ad a second time.
+            Log.d(TAG, "Ad was dismissed.");
+            Toast.makeText(game_lobby.this, " You have been rewarded 1 gem ", Toast.LENGTH_SHORT).show();
+
+            mRewardedAd = null;
+            watched_ad = false;
+            load_advert();
+        }
+    });}
+
+    public void show_advert_to_user()
+    {
+        if (mRewardedAd != null) {
+
+            mRewardedAd.show(this, new OnUserEarnedRewardListener() {
+                @Override
+                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                    // Handle the reward.
+                    Log.d(TAG, "The user earned the reward.");
+                    int rewardAmount = rewardItem.getAmount();
+                    String rewardType = rewardItem.getType();
+                    add_player_gem(username);
+                }
+            });
+        } else {
+            Log.d(TAG, "The rewarded ad wasn't ready yet.");
+        }
+    }
+
+    public void add_player_gem(String username)
+    {
+        //maake firebase database reference
+        DatabaseReference ref = FirebaseDatabase.getInstance("https://canvas-3-b2835-default-rtdb.europe-west1.firebasedatabase.app").getReference();
+
+        //1 get gem number
+        //increment it by 1
+        //save it in realtime db
+        //edit in gem edittex
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int gem_amt = Integer.parseInt(snapshot.child("player").child(username).child("gems").getValue(String.class));
+                int gem_new_amt = gem_amt + 1;
+                String new_gem_string = Integer.toString(gem_new_amt);
+
+               gems.setText(" Gems: "+ gem_new_amt);
+
+               if(!watched_ad){ ref.child("player").child(username).child("gems").setValue(new_gem_string);watched_ad = true;}
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+    }
+
+    // overide pause & resume in activity
+    @Override
+    protected void onPause() {
+        super.onPause();
+       lobby_music_sound.pause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        lobby_music_sound.stop();
+        lobby_music_sound.release();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        lobby_music_sound.start();
     }
 
 

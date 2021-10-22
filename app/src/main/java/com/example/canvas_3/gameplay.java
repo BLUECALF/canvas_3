@@ -46,6 +46,9 @@ public class gameplay extends Activity {
         gv.save_player_coins_in_db();
         finish();
     }
+
+
+
     public void pay_1_coin(View v)
     {
        // player must be sheilded from the obstacle he/she hit
@@ -66,6 +69,26 @@ public class gameplay extends Activity {
 
         dialog.dismiss();
         Toast.makeText(getApplicationContext(), "you have paid 1 coin !", Toast.LENGTH_SHORT).show();
+        gv.thread.coin_collission_sound.start();
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        gv.thread.theme_music_sound.pause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        gv.thread.theme_music_sound.stop();
+        gv.thread.theme_music_sound.release();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        gv.thread.theme_music_sound.start();
     }
 }

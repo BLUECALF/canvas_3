@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.os.Looper;
 import android.view.SurfaceHolder;
 import android.widget.Toast;
@@ -41,6 +42,11 @@ public class GameThread  extends Thread{
 
     int target_distance;
 
+    // mediaplayers for sound effects
+    MediaPlayer coin_collission_sound;
+    MediaPlayer theme_music_sound;
+    MediaPlayer hurt_sound;
+
 
 
 
@@ -57,6 +63,12 @@ public class GameThread  extends Thread{
         frames = 0;
         collision = 0;
 
+        // initialize the sounds.
+        coin_collission_sound = MediaPlayer.create(gv.getContext(), R.raw.coins_down);
+        hurt_sound = MediaPlayer.create(gv.getContext(), R.raw.hurt_sound);
+        theme_music_sound = MediaPlayer.create(gv.getContext(), R.raw.theme_music);
+        theme_music_sound.setLooping(true);
+        theme_music_sound.start();
 
     }
 
@@ -95,6 +107,7 @@ public class GameThread  extends Thread{
                        }
 
                    });
+                        hurt_sound.start();  //player screams to show hurt
                     //slow down time by 5 sec
                         try {
                             sleep(5000);
@@ -127,6 +140,7 @@ public class GameThread  extends Thread{
                         }
 
                     });
+                        hurt_sound.start();  //player screams to show hurt
                     //slow down time for 5 sec
                         try {
                             sleep(5000);
@@ -158,6 +172,7 @@ public class GameThread  extends Thread{
 
                 if(coin_collide==1)// coin collision happened
                 {
+                    coin_collission_sound.start();
                     gv.coin.coin_created = false; // coin is collected and dissapears
                     gv.player.player_number_of_coins ++;
                 }

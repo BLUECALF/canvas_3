@@ -108,7 +108,7 @@ public class PlayerView {
             //check slide number then draw';
 
             if(slide_no == 0)
-            {canvas.drawBitmap(playerimages.get(0),player_x,player_y,null);canvas.drawText(""+screenWidth,100,100,paint);}
+            {canvas.drawBitmap(playerimages.get(0),player_x,player_y,null);}
             else if(slide_no == 1)
             {canvas.drawBitmap(playerimages.get(1),player_x,player_y,null);}
             else if(slide_no == 2)
@@ -150,7 +150,7 @@ public class PlayerView {
                 player_jumping_x = player_x;
                 player_jumping_y = player_y-30;
             }
-            else if(slide_no == 1)
+            else if(jump_slide_no == 1)
             {canvas.drawBitmap(playerimages.get(11),player_x,player_y-50,null);
                 //canvas.drawRect(player_x,player_y-100,player_x+100,player_y +100-100,paint);
                 player_jumping_x = player_x;
@@ -230,6 +230,9 @@ public class PlayerView {
             //what happens when player jumps
             player_x = screenWidth/4;
             player_y = screenHeight-200;
+
+            //make player cancel his/her jump by .
+            jump_slide_no = 0;
 
 
             player_jumping_x = player_x;
