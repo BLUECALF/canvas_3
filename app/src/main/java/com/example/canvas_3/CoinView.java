@@ -13,6 +13,8 @@ public class CoinView {
     int coin_x;
     int coin_y;
     boolean coin_created;
+    boolean screen_passed;
+    int screen_determiner;
     int screen_width;
     int screen_height;
     int coin_slide_number;
@@ -25,34 +27,46 @@ public class CoinView {
         coin_image_array = new ArrayList<>(coin_image);
         coin_slide_number = 0;
         random = new Random();
-
+        screen_passed = true;
+        screen_determiner = 0;
 
     }
     public void draw_coin(Canvas canvas)
     {
+        //ask if screen has passed ,if true then determine if coin is spawned
+        //if not addscreen determiner.
+
+
         // choose randomly if a coin can be spawned
         // spawn the coin
         //draw the coin
         // update coin coordinates
         // if its not seen then end it
         // if its collided end it also
+        if(screen_passed){
+            //if screen has passed we choose coin spawn.
+            if(coin_created==false) {
+                // if coin has not been made
 
-        if(coin_created==false) {
-            // if coin has not been made
-
-            int choice = random.nextInt(2);
-            int jump_variation = random.nextInt(11)*10;
-
-
-            if (choice == 0) // coin has been chosen to spawn
-            {
-                // spawn the coin
-                coin_created = true;
-                coin_x = screen_width + 1000;
-                coin_y = screen_height - 200 -jump_variation;
+                int choice = random.nextInt(4);
+                int jump_variation = random.nextInt(11)*10;
 
 
-            }
+                if (choice == 0) // coin has been chosen to spawn
+                {
+                    // spawn the coin
+                    coin_created = true;
+                    coin_x = screen_width + 1000;
+                    coin_y = screen_height - 200 -jump_variation;
+                }
+                screen_passed = false;
+        }
+
+
+        }else {
+            //we  add the screen determiner to know if screen has passed.
+            screen_determiner +=20;
+            if(screen_determiner >= screen_width){screen_passed = true; screen_determiner = 0; }
         }
         if(coin_created == true) // if coin has been created
         {
@@ -66,7 +80,7 @@ public class CoinView {
                 coin_slide_number = 0;
             }
             if(coin_x<0) //if its not seen it is destroyed
-            {coin_created=false;}
+            {coin_created=false; coin_x = 0;coin_y = 0;}
         }
 
 

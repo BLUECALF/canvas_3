@@ -83,7 +83,7 @@ public class obstacleView {
             obstacle_1_player_sheilded=false;
 
             //give the obstacle a type
-            if(random.nextInt(2) == 0){
+            if(random.nextInt(4) != 0){
                 //allocate an image if obstacle_type == jump
                 obstacle_1_image = imageArray.get(random.nextInt(9));
                 obstacle_1_type ="jump";}
@@ -133,7 +133,7 @@ public class obstacleView {
             obstacle_2_player_sheilded = false;
 
             //give obstacle two a type and image.
-            if(random.nextInt(2)==0)
+            if(random.nextInt(4) != 0)
             {obstacle_2_image = imageArray.get(random.nextInt(9));
             obstacle_2_type = "jump";
             }else{obstacle_2_type = "slide"; obstacle_2_y = obstacle_2_y - 50;}

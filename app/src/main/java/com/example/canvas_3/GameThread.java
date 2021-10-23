@@ -174,6 +174,7 @@ public class GameThread  extends Thread{
                 {
                     coin_collission_sound.start();
                     gv.coin.coin_created = false; // coin is collected and dissapears
+                    gv.coin.coin_x = 0; gv.coin.coin_y = 0;
                     gv.player.player_number_of_coins ++;
                 }
 
@@ -186,7 +187,7 @@ public class GameThread  extends Thread{
                 {
                     //player past target
                     target_distance = target_distance + 100;
-                    game_delay = game_delay - 3;
+                    game_delay = game_delay - 2;
                     gv.gp.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
