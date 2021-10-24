@@ -55,4 +55,8 @@ public class GUI_activity extends Activity {
         startActivity(lobby);
     }
 
+    public void open_special_thanks(View view) {
+        Intent thanks = new Intent(this,special_thanks.class);
+        startActivity(thanks);
+    }
 }

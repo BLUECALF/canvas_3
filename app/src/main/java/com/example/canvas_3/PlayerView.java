@@ -207,12 +207,12 @@ public class PlayerView {
                 player_jumping_x = player_x;
                 player_jumping_y = player_y-100;}
             else if(jump_slide_no == 11)
-            {canvas.drawBitmap(playerimages.get(19),player_x,player_y-80,null);
+            {canvas.drawBitmap(playerimages.get(19),player_x,player_y-50,null);
                 //canvas.drawRect(player_x,player_y-240,player_x+100,player_y +100-240,paint);
                 player_jumping_x = player_x;
                 player_jumping_y = player_y-80;}
             else if(jump_slide_no == 12)
-            {canvas.drawBitmap(playerimages.get(19),player_x,player_y- 50,null);
+            {canvas.drawBitmap(playerimages.get(19),player_x,player_y- 0,null);
                 //canvas.drawRect(player_x,player_y-240,player_x+100,player_y +100-240,paint);
                 player_jumping_x = player_x;
                 player_jumping_y = player_y-50;}

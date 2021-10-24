@@ -337,7 +337,7 @@ public class game_lobby extends Activity {
     private void load_advert() {
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917",
+        RewardedAd.load(this, "ca-app-pub-1242988054349479/3107004984",
                 adRequest, new RewardedAdLoadCallback() {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {

@@ -4,6 +4,40 @@
     <string name="title_activity_game_over">game_over_activity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id">ca-app-pub-1242988054349479/1441735376</string>
+    <string name = "thanks">\t\t\tspecial thanks.\n\n
+ 	\tyoutube website\n
+ /Caleb Curry\n
+ /Bro Code\n
+ /Coding in flow\n
+ /Android Authority\n
+ /Alex Bukk\n
+ /clientuser.net\n
+ /DevNami\n
+ /Code Expedition\n
+ /Franks Laboratory\n
+ /Technical Skillz\n
+ /Programming Knowledge\n
+ /AllCodingTuitorials\n
+ /Cambo Tuitorial\n
+ /Educatree\n
+ /Math and Science\n
+ /Piyum Madusanka\n
+ /Techno Learning\n
+ /Intelligent Coding\n
+ /Vishal Singh\n
+ /Code Infinity\n
+ /MobyApps Nation\n
+\n
+	\tResources\n
+/google images\n
+/gameart2d.com free sprites\n
+/zapsplat.net  free sound effects and game music.\n
+/static.wikia.nocookie.net sound effects\n
+\n
+	\tIDE\n
+-This application was made using ^ Android Studio -Arctic Fox ^\n
+-Java language was Used.\n
+</string>
 
 </resources>
