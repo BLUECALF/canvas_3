@@ -1,4 +1,4 @@
-package com.example.canvas_3;
+package com.jangwarun.canvas_3;
 
 import android.app.Dialog;
 import android.content.Context;

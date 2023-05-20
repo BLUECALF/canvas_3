@@ -1,4 +1,4 @@
-package com.example.canvas_3;
+package com.jangwarun.canvas_3;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -100,7 +100,7 @@ public class game_lobby extends Activity {
 
     public void run_game(View v)
     {
-        Intent gameplay = new Intent(this, com.example.canvas_3.gameplay.class);
+        Intent gameplay = new Intent(this, com.jangwarun.canvas_3.gameplay.class);
         gameplay.putExtra("playerschoice",player_skin_choice);
         startActivity(gameplay);
     }

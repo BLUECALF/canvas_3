@@ -1,4 +1,4 @@
-package com.example.canvas_3;
+package com.jangwarun.canvas_3;
 
 import org.junit.Test;
 
